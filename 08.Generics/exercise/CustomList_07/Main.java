@@ -1,0 +1,55 @@
+package T8Generics.exercise.CustomList_07;
+
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        CustomList<String> customList = new CustomList<>();
+        String input = scan.nextLine();
+        while (!input.equals("END")) {
+            String[] tokens = input.split("\\s+");
+            String command = tokens[0];
+            switch (command) {
+                case "Add":
+                    String elementToAdd = tokens[1];
+                    customList.add(elementToAdd);
+                    break;
+                case "Remove":
+                    int index = Integer.parseInt(tokens[1]);
+                    customList.remove(index);
+                    break;
+                case "Contains":
+                    String element = tokens[1];
+                    System.out.println(customList.contains(element));
+                    break;
+                case "Swap":
+                    int index1 = Integer.parseInt(tokens[1]);
+                    int index2 = Integer.parseInt(tokens[2]);
+                    customList.swap(index1, index2);
+                    break;
+                case "Greater":
+                    String value = tokens[1];
+                    System.out.println(customList.countGreaterThan(value));
+                    break;
+                case "Max":
+                    System.out.println(customList.getMax());
+                    break;
+                case "Min":
+                    System.out.println(customList.getMin());
+                    break;
+                case "Print":
+                    for (String el : customList) {
+                        System.out.println(el);
+                    }
+                    break;
+                case "Sort":
+                    Sorter.sort(customList);
+                    break;
+            }
+
+            input = scan.nextLine();
+        }
+    }
+}
